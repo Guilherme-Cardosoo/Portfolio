@@ -262,45 +262,154 @@ main {
    RESPONSIVO
 ========================= */
 
-@media (max-width: 700px) {
-  .about-preview {
-    padding: 100px 20px 50px;
+@media (max-width: 1000px) {
+  .skills-globe {
+    height: 520px;
   }
 
-  .about-content {
-    min-height: 500px;
-
-    padding: 40px 30px 90px;
-
-    border-radius: 16px;
+  .skill-panel {
+    right: 2%;
+    width: 250px;
+    padding: 22px;
   }
 
-  .about-content p {
+  .skill-panel h3 {
+    font-size: 25px;
+  }
+
+  .skill-panel p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 800px) {
+  .skills-globe {
+    height: 620px;
+  }
+
+  .skill-panel {
+    right: 50%;
+    top: auto;
+    bottom: 10px;
+
+    width: min(85%, 380px);
+
+    padding: 20px;
+
+    transform: translateX(50%);
+  }
+
+  .skill-panel-enter-from,
+  .skill-panel-leave-to {
+    transform: translate(50%, 20px);
+  }
+
+  .globe-hint {
+    bottom: 180px;
+  }
+}
+
+@media (max-width: 780px) {
+  .skills-globe {
+    height: 520px;
+  }
+
+  .skill-panel {
+    bottom: 5px;
+
+    width: calc(100% - 30px);
+
+    padding: 18px;
+
+    border-radius: 15px;
+  }
+
+  .skill-type {
+    font-size: 11px;
+  }
+
+  .skill-panel h3 {
+    margin-bottom: 8px;
+
+    font-size: 22px;
+  }
+
+  .skill-panel p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .close-button {
+    margin-top: 14px;
+
+    padding: 7px 14px;
+
+    font-size: 13px;
+  }
+
+  .globe-hint {
+    bottom: 155px;
+
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 550px) {
+  .skills-globe {
+    height: 450px;
+  }
+
+  .skill-panel {
+    width: calc(100% - 20px);
+    padding: 15px;
+  }
+
+  .skill-panel h3 {
+    font-size: 20px;
+  }
+
+  .skill-panel p {
+    font-size: 12px;
+  }
+
+  .globe-hint {
+    bottom: 145px;
+  }
+}
+
+@media (max-width: 450px) {
+  .skills-globe {
+    height: 390px;
+  }
+
+  .skill-panel {
+    width: calc(100% - 16px);
+    padding: 13px;
+  }
+
+  .skill-type {
+    font-size: 10px;
+  }
+
+  .skill-panel h3 {
+    margin-bottom: 6px;
     font-size: 18px;
-    line-height: 1.6;
   }
 
-  .about-button {
-    left: 30px;
-    bottom: 25px;
-
-    font-size: 16px;
+  .skill-panel p {
+    font-size: 11px;
+    line-height: 1.45;
   }
 
-  .skills-section {
-    padding: 100px 20px 50px;
+  .close-button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    font-size: 12px;
   }
 
-  .skills-header h2 {
-    font-size: clamp(38px, 12vw, 52px);
-  }
-
-  .skills-header p {
-    font-size: 16px;
-  }
-
-  .section {
-    padding: 100px 20px 50px;
+  .globe-hint {
+    bottom: 135px;
+    font-size: 11px;
   }
 }
 </style>
