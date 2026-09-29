@@ -28,7 +28,7 @@ const closeMenu = () => {
         </a>
 
         <a
-          href="/sobre"
+          href="#sobre"
           @click="closeMenu"
         >
           Sobre
