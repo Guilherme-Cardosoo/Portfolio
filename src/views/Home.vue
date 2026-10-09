@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar.vue'
 import Hero from '../components/home/Hero.vue'
 import SkillsGlobe from '../components/home/SkillsGlobe.vue'
+import ProjectsSection from '../components/home/Projects.vue'
 </script>
 
 <template>
@@ -55,9 +56,7 @@ import SkillsGlobe from '../components/home/SkillsGlobe.vue'
       </section>
 
       <!-- PROJETOS -->
-      <section id="projetos" class="section">
-        <h2>Projetos</h2>
-      </section>
+      <ProjectsSection />
 
       <!-- SERVIÇOS -->
       <section id="servicos" class="section">

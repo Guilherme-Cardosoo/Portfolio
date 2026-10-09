@@ -35,7 +35,7 @@ const skills = [
     name: 'CSS',
     type: 'Hard Skill',
     description:
-      'Criação de interfaces responsivas, modernas e visualmente organizadas.'
+      'Criação de interfaces responsivas, organizadas e mordernas'
   },
   {
     name: 'JavaScript',
@@ -65,7 +65,7 @@ const skills = [
     name: 'GitHub',
     type: 'Hard Skill',
     description:
-      'Hospedagem, colaboração e organização de projetos utilizando Git.'
+      'Hospedagem, colaboração e organização de projetos.'
   },
   {
     name: 'Web Design',
@@ -114,12 +114,6 @@ const skills = [
     type: 'Soft Skill',
     description:
       'Facilidade para aprender e se adaptar a novas situações.'
-  },
-  {
-    name: 'Aprendizado contínuo',
-    type: 'Soft Skill',
-    description:
-      'Busca constante por novos conhecimentos e evolução profissional.'
   }
 ]
 
@@ -296,13 +290,6 @@ function createStructuralPoints(points) {
 }
 
 function createSkillPoints(points) {
-  /*
-   * Escolhe posições espalhadas por toda
-   * a esfera para as habilidades.
-   *
-   * Em vez de pegar os últimos pontos,
-   * usamos um espaçamento uniforme.
-   */
 
   const skillPositions = []
 
@@ -322,10 +309,6 @@ function createSkillPoints(points) {
     let index =
       i * step
 
-    /*
-     * Pequena variação para evitar
-     * um padrão visual muito perfeito.
-     */
     index =
       Math.min(
         index + (i % 3),
@@ -560,10 +543,6 @@ function handlePointerUp(event) {
       pointerUp
     )
 
-  /*
-   * Se houve arraste, não
-   * consideramos como clique.
-   */
   if (distance > 5) {
     return
   }
@@ -791,14 +770,11 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="skills-globe">
-
-    <!-- GLOBO -->
     <div
       ref="globeContainer"
       class="globe-container"
     ></div>
 
-    <!-- NOME DA SKILL NO HOVER -->
     <transition name="hover-skill">
       <div
         v-if="hoveredSkill && !selectedSkill"
@@ -814,7 +790,6 @@ onBeforeUnmount(() => {
       </div>
     </transition>
 
-    <!-- PAINEL DA SKILL -->
     <transition name="skill-panel">
       <div
         v-if="selectedSkill"
@@ -842,24 +817,20 @@ onBeforeUnmount(() => {
       </div>
     </transition>
 
-    <!-- DICA -->
     <div
       v-if="!selectedSkill && !hoveredSkill"
       class="globe-hint"
     >
       Arraste para explorar
     </div>
-
   </div>
 </template>
 
 <style scoped>
 .skills-globe {
   position: relative;
-
   width: 100%;
   height: 560px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -868,7 +839,6 @@ onBeforeUnmount(() => {
 .globe-container {
   width: 100%;
   height: 100%;
-
   cursor: grab;
 }
 
@@ -878,36 +848,23 @@ onBeforeUnmount(() => {
 
 .globe-container :deep(canvas) {
   display: block;
-
   width: 100%;
   height: 100%;
 }
 
-/* =========================
-   HOVER DA SKILL
-========================= */
-
 .hover-skill {
   position: absolute;
-
   top: 50%;
   left: 50%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: 10px 16px;
-
   background: rgba(10, 15, 61, 0.65);
-
   border: 1px solid rgba(255, 255, 255, 0.18);
-
   border-radius: 10px;
-
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-
   box-shadow:
     0 5px 25px rgba(0, 0, 0, 0.2);
 
@@ -916,51 +873,34 @@ onBeforeUnmount(() => {
     translateY(-45px);
 
   pointer-events: none;
-
   z-index: 10;
 }
 
 .hover-skill span {
   color: #fff;
-
   font-size: 15px;
   font-weight: 600;
 }
 
 .hover-skill small {
   margin-top: 3px;
-
   color: rgba(255, 255, 255, 0.55);
-
   font-size: 11px;
 }
 
-/* =========================
-   PAINEL
-========================= */
-
 .skill-panel {
   position: absolute;
-
   right: 4%;
   top: 50%;
-
   width: 280px;
-
   padding: 25px;
-
   box-sizing: border-box;
-
   background: rgba(255, 255, 255, 0.055);
-
   border: 1px solid rgba(255, 255, 255, 0.11);
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-
   border-radius: 18px;
-
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-
   box-shadow:
     0 4px 25px rgba(0, 0, 0, 0.18);
 
@@ -972,54 +912,37 @@ onBeforeUnmount(() => {
 
 .skill-type {
   display: block;
-
   margin-bottom: 8px;
-
   color: rgba(255, 255, 255, 0.55);
-
   font-size: 13px;
   font-weight: 500;
-
   text-transform: uppercase;
-
   letter-spacing: 1.5px;
 }
 
 .skill-panel h3 {
   margin: 0 0 12px;
-
   color: #fff;
-
   font-size: 28px;
   font-weight: 600;
 }
 
 .skill-panel p {
   margin: 0;
-
   color: rgba(255, 255, 255, 0.75);
-
   font-size: 15px;
   line-height: 1.6;
 }
 
 .close-button {
   margin-top: 20px;
-
   padding: 8px 16px;
-
   color: rgba(255, 255, 255, 0.85);
-
   font-size: 14px;
-
   background: rgba(255, 255, 255, 0.08);
-
   border: 1px solid rgba(255, 255, 255, 0.15);
-
   border-radius: 8px;
-
   cursor: pointer;
-
   transition:
     background 0.3s ease,
     border-color 0.3s ease;
@@ -1027,35 +950,21 @@ onBeforeUnmount(() => {
 
 .close-button:hover {
   background: rgba(255, 255, 255, 0.15);
-
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* =========================
-   DICA
-========================= */
-
 .globe-hint {
   position: absolute;
-
   bottom: 15px;
   left: 50%;
-
   color: rgba(255, 255, 255, 0.4);
-
   font-size: 13px;
-
   letter-spacing: 0.5px;
-
   transform:
     translateX(-50%);
 
   pointer-events: none;
 }
-
-/* =========================
-   ANIMAÇÕES
-========================= */
 
 .skill-panel-enter-active,
 .skill-panel-leave-active {
@@ -1067,7 +976,6 @@ onBeforeUnmount(() => {
 .skill-panel-enter-from,
 .skill-panel-leave-to {
   opacity: 0;
-
   transform:
     translate(20px, -50%);
 }
@@ -1082,15 +990,10 @@ onBeforeUnmount(() => {
 .hover-skill-enter-from,
 .hover-skill-leave-to {
   opacity: 0;
-
   transform:
     translate(-50%, -50%)
     translateY(-35px);
 }
-
-/* =========================
-   RESPONSIVO
-========================= */
 
 @media (max-width: 900px) {
   .skills-globe {
@@ -1101,9 +1004,7 @@ onBeforeUnmount(() => {
     right: 50%;
     top: auto;
     bottom: 15px;
-
     width: min(90%, 400px);
-
     transform:
       translateX(50%);
   }

@@ -101,13 +101,12 @@ const closeMenu = () => {
   align-items: center;
   justify-content: space-between;
   padding: 20px 22vh;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(22px);
   box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.15);
+    0 8px 30px rgba(0, 0, 0, 0.18);
 }
 
 .logo {
@@ -247,15 +246,15 @@ const closeMenu = () => {
   flex-direction: column;
   align-items: stretch;
   gap: 0;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 15px;
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(18px);
   box-shadow:
     0 4px 20px rgba(0, 0, 0, 0.15);
-
+    
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);

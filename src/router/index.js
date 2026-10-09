@@ -25,7 +25,13 @@ const router = createRouter({
       name: 'About',
       component: About
     }
-  ]
+  ],
+
+  scrollBehavior() {
+    return {
+      top: 0
+    }
+  }
 })
 
 export default router
