@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar.vue'
 import Hero from '../components/home/Hero.vue'
 import SkillsGlobe from '../components/home/SkillsGlobe.vue'
 import ProjectsSection from '../components/home/Projects.vue'
+import ServicesSection from '../components/home/Services.vue'
 </script>
 
 <template>
@@ -60,7 +61,7 @@ import ProjectsSection from '../components/home/Projects.vue'
 
       <!-- SERVIÇOS -->
       <section id="servicos" class="section">
-        <h2>Serviços</h2>
+        <ServicesSection />
       </section>
 
       <!-- CONTATO -->
