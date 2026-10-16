@@ -56,7 +56,6 @@ onUnmounted(() => {
 <template>
   <section id="inicio" class="hero">
     <div class="hero-content">
-
       <h1>
         Construindo experiências 
         <br> 
@@ -67,7 +66,6 @@ onUnmounted(() => {
         <span>{{ displayedText }}</span>
         <span class="cursor">|</span>
       </p>
-
     </div>
   </section>
 </template>
@@ -91,33 +89,26 @@ onUnmounted(() => {
 
 .hero h1 {
   margin: 0;
-
   font-size: 64px;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -1px;
-
   color: #fff;
 }
 
 .typing-text {
   margin: 25px 0 0;
-
   min-height: 36px;
-
   font-size: 25px;
   font-weight: 400;
   line-height: 1.4;
-
   color: rgba(255, 255, 255, 0.82);
 }
 
 .cursor {
   display: inline-block;
   margin-left: 3px;
-
   font-weight: 300;
-
   animation: blink 0.8s infinite;
 }
 
@@ -133,7 +124,6 @@ onUnmounted(() => {
   }
 }
 
-/* Tablet */
 @media (max-width: 900px) {
   .hero h1 {
     font-size: 50px;
@@ -144,7 +134,6 @@ onUnmounted(() => {
   }
 }
 
-/* Mobile */
 @media (max-width: 600px) {
   .hero {
     padding: 0 20px;
@@ -161,7 +150,6 @@ onUnmounted(() => {
   }
 }
 
-/* Celulares menores */
 @media (max-width: 400px) {
   .hero h1 {
     font-size: 32px;

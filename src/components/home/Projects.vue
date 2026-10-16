@@ -471,7 +471,6 @@ const previousProject = () => {
   opacity: 0.3;
 }
 
-/* Transições entre projetos */
 .project-next-enter-active,
 .project-next-leave-active,
 .project-previous-enter-active,
@@ -501,8 +500,6 @@ const previousProject = () => {
   transform: translateX(28px) scale(0.985);
 }
 
-
-/* Notebooks e tablets na horizontal */
 @media (max-width: 1050px) {
   .projects-container {
     width: calc(100% - 112px);
@@ -525,7 +522,6 @@ const previousProject = () => {
   }
 }
 
-/* Tablets e celulares */
 @media (max-width: 800px) {
   .projects-section {
     height: auto;
@@ -587,7 +583,6 @@ const previousProject = () => {
     max-width: none;
   }
 
-  /* As setas ficam fora da área do conteúdo */
   .project-navigation {
     top: 24px;
     bottom: auto;
@@ -609,7 +604,6 @@ const previousProject = () => {
   }
 }
 
-/* Celulares */
 @media (max-width: 480px) {
   .projects-section {
     padding: 82px 0 70px;
@@ -675,7 +669,6 @@ const previousProject = () => {
   }
 }
 
-/* Celulares estreitos */
 @media (max-width: 350px) {
   .projects-container {
     width: calc(100% - 40px);
@@ -691,7 +684,6 @@ const previousProject = () => {
   }
 }
 
-/* Respeita a preferência por movimento reduzido */
 @media (prefers-reduced-motion: reduce) {
   .projects-background,
   .project-button,

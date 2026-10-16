@@ -52,7 +52,6 @@ const enter = () => {
 #loading-screen {
   position: fixed;
   inset: 0;
-
   background: radial-gradient(
     circle at top left,
     #07bfcf 0%,
@@ -61,21 +60,15 @@ const enter = () => {
   );
 
   color: #fff;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   gap: 20px;
-
   font-family: 'Inter', sans-serif;
-
   z-index: 9999;
-
   opacity: 1;
   transform: translateY(0);
-
   transition:
     opacity 0.8s ease,
     transform 0.8s ease;
@@ -90,12 +83,9 @@ const enter = () => {
 .spinner {
   width: 40px;
   height: 40px;
-
   border: 4px solid #999;
   border-top-color: #fff;
-
   border-radius: 50%;
-
   animation: spin 0.8s linear infinite;
 }
 
@@ -107,19 +97,13 @@ const enter = () => {
 
 #enter-btn {
   padding: 10px 25px;
-
   background: transparent;
   color: #fff;
-
   border: 2px solid #fff;
-
   cursor: pointer;
-
   font-size: 28px;
   font-weight: 200;
-
   animation: fadeIn 0.8s ease forwards;
-
   transition:
     background 0.5s,
     box-shadow 0.5s,
@@ -128,11 +112,8 @@ const enter = () => {
 
 #enter-btn:hover {
   background: rgba(255, 255, 255, 0.103);
-
   border-color: #fff;
-
   box-shadow: 0 0 12px #fff;
-
   transform: scale(1.05);
 }
 
