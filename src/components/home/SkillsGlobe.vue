@@ -74,6 +74,12 @@ const skills = [
       'Criação e planejamento de interfaces limpas, modernas e funcionais.'
   },
   {
+    name: 'Three.js',
+    type: 'Hard Skill',
+    description:
+      'Criação de experiências 3D interativas para aplicações web.'
+  },
+  {
     name: 'Comunicação',
     type: 'Soft Skill',
     description:

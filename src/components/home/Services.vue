@@ -100,7 +100,6 @@ function createLandingPage() {
   addBox(group, [1.8, 2.25, 0.16], frame, [0, 0, 0])
   addBox(group, [1.65, 2.08, 0.035], screen, [0, 0.015, 0.1])
 
-  // Barra superior da página.
   addBox(group, [1.65, 0.18, 0.045], frame, [0, 0.96, 0.13])
 
   ;[-0.65, -0.52, -0.39].forEach((x, i) => {
@@ -123,105 +122,208 @@ function createLandingPage() {
   return group
 }
 
-
 function createIdentity() {
   const group = new THREE.Group()
 
-  const paletteMaterial = new THREE.MeshStandardMaterial({
-    color: 0x9bdcff,
-    roughness: 0.3,
+  const frameMaterial = makeMaterial(0x101b35, {
+    metalness: 0.65,
+    roughness: 0.25
+  })
+
+  const headerMaterial = makeMaterial(0x1b2b4a, {
+    metalness: 0.45,
+    roughness: 0.3
+  })
+
+  const screenMaterial = makeMaterial(0xeaf2ff, {
     metalness: 0.08,
+    roughness: 0.45
   })
 
-  const paletteSideMaterial = new THREE.MeshStandardMaterial({
-    color: 0x438fca,
-    roughness: 0.38,
+  const sidebarMaterial = makeMaterial(0xd7e4f8, {
+    metalness: 0.15,
+    roughness: 0.4
+  })
+
+  const cyanMaterial = makeMaterial(0x42d9ff, {
+    emissive: 0x0a526b,
+    emissiveIntensity: 0.35
+  })
+
+  const purpleMaterial = makeMaterial(0x9b7bff)
+  const pinkMaterial = makeMaterial(0xff78b7)
+  const blueMaterial = makeMaterial(0x477bff)
+  const whiteMaterial = makeMaterial(0xffffff, {
     metalness: 0.05,
+    roughness: 0.5
   })
 
-  const paintColors = [
-    0x1677ff, // Azul
-    0x38d9f5, // Ciano
-    0x8b72ff, // Violeta
-    0xffffff, // Branco
-    0x5cdb9b, // Verde
-    0xffa7d7, // Rosa
-  ]
-
-  const shape = new THREE.Shape()
-
-  shape.moveTo(-0.82, -0.48)
-  shape.bezierCurveTo(-1.08, -0.05, -0.83, 0.62, -0.35, 0.72)
-  shape.bezierCurveTo(0.05, 0.88, 0.65, 0.62, 0.82, 0.18)
-  shape.bezierCurveTo(0.98, -0.18, 0.64, -0.55, 0.25, -0.62)
-  shape.bezierCurveTo(-0.12, -0.68, -0.47, -0.85, -0.82, -0.48)
-
-  const thumbHole = new THREE.Path()
-  thumbHole.absellipse(0.48, -0.35, 0.13, 0.16, 0, Math.PI * 2, true)
-  shape.holes.push(thumbHole)
-
-  const geometry = new THREE.ExtrudeGeometry(shape, {
-    depth: 0.12,
-    bevelEnabled: true,
-    bevelSegments: 4,
-    steps: 1,
-    bevelSize: 0.045,
-    bevelThickness: 0.045,
-    curveSegments: 20,
-  })
-
-  geometry.center()
-
-  const palette = new THREE.Mesh(
-    geometry,
-    [paletteMaterial, paletteSideMaterial],
+  addBox(
+    group,
+    [2.05, 1.58, 0.16],
+    frameMaterial,
+    [0, 0, 0]
   )
 
-  palette.rotation.x = -0.12
-  palette.rotation.y = -0.18
-  palette.rotation.z = -0.2
+  addBox(
+    group,
+    [1.94, 1.46, 0.025],
+    screenMaterial,
+    [0, -0.025, 0.09]
+  )
 
-  group.add(palette)
+  addBox(
+    group,
+    [2.0, 0.22, 0.035],
+    headerMaterial,
+    [0, 0.65, 0.105]
+  )
 
-  const paintPositions = [
-    [-0.48, 0.34, 0.105],
-    [-0.08, 0.46, 0.105],
-    [0.30, 0.34, 0.105],
-    [-0.52, -0.02, 0.105],
-    [-0.12, 0.05, 0.105],
-    [0.24, -0.08, 0.105],
+  const dotGeometry = new THREE.SphereGeometry(0.035, 16, 16)
+
+  addMesh(group, dotGeometry, pinkMaterial, [-0.82, 0.65, 0.14])
+  addMesh(group, dotGeometry, purpleMaterial, [-0.70, 0.65, 0.14])
+  addMesh(group, dotGeometry, cyanMaterial, [-0.58, 0.65, 0.14])
+
+  addBox(
+    group,
+    [0.34, 1.18, 0.025],
+    sidebarMaterial,
+    [-0.79, -0.075, 0.115]
+  )
+
+  addBox(
+    group,
+    [0.10, 0.10, 0.035],
+    blueMaterial,
+    [-0.79, 0.37, 0.14],
+    Math.PI / 4
+  )
+
+  addMesh(
+    group,
+    new THREE.CircleGeometry(0.055, 24),
+    purpleMaterial,
+    [-0.79, 0.16, 0.145]
+  )
+
+  addMesh(
+    group,
+    new THREE.TorusGeometry(0.045, 0.014, 8, 24),
+    blueMaterial,
+    [-0.79, -0.055, 0.15]
+  )
+
+  addBox(
+    group,
+    [0.11, 0.07, 0.035],
+    cyanMaterial,
+    [-0.79, -0.27, 0.14]
+  )
+
+  const toolDotGeometry = new THREE.CircleGeometry(0.025, 16)
+
+  addMesh(
+    group,
+    toolDotGeometry,
+    pinkMaterial,
+    [-0.86, -0.48, 0.15]
+  )
+
+  addMesh(
+    group,
+    toolDotGeometry,
+    cyanMaterial,
+    [-0.79, -0.48, 0.15]
+  )
+
+  addMesh(
+    group,
+    toolDotGeometry,
+    purpleMaterial,
+    [-0.72, -0.48, 0.15]
+  )
+
+  addBox(
+    group,
+    [1.18, 1.02, 0.035],
+    whiteMaterial,
+    [0.25, -0.055, 0.125]
+  )
+
+  addMesh(
+    group,
+    new THREE.CircleGeometry(0.24, 40),
+    cyanMaterial,
+    [0.03, 0.16, 0.155]
+  )
+
+  addBox(
+    group,
+    [0.43, 0.43, 0.055],
+    purpleMaterial,
+    [0.43, 0.05, 0.17],
+    Math.PI / 4
+  )
+
+  addMesh(
+    group,
+    new THREE.CircleGeometry(0.15, 32),
+    pinkMaterial,
+    [0.53, 0.19, 0.205]
+  )
+
+  addBox(
+    group,
+    [0.62, 0.075, 0.035],
+    blueMaterial,
+    [0.23, -0.34, 0.16]
+  )
+
+  addBox(
+    group,
+    [0.40, 0.055, 0.035],
+    cyanMaterial,
+    [0.12, -0.46, 0.16]
+  )
+
+  addMesh(
+    group,
+    new THREE.CircleGeometry(0.045, 24),
+    purpleMaterial,
+    [0.67, -0.32, 0.16]
+  )
+
+  addMesh(
+    group,
+    new THREE.CircleGeometry(0.045, 24),
+    pinkMaterial,
+    [0.80, -0.32, 0.16]
+  )
+
+  const swatchGeometry = new THREE.CircleGeometry(0.055, 24)
+
+  const swatches = [
+    { x: -0.12, color: blueMaterial },
+    { x: 0.03, color: purpleMaterial },
+    { x: 0.18, color: pinkMaterial },
+    { x: 0.33, color: cyanMaterial }
   ]
 
-  const paintSizes = [
-    [0.17, 0.12, 0.055],
-    [0.15, 0.13, 0.055],
-    [0.17, 0.12, 0.055],
-    [0.14, 0.12, 0.055],
-    [0.18, 0.13, 0.055],
-    [0.13, 0.11, 0.055],
-  ]
-
-  paintPositions.forEach((position, index) => {
-    const paint = new THREE.Mesh(
-      new THREE.SphereGeometry(1, 24, 16),
-      new THREE.MeshStandardMaterial({
-        color: paintColors[index],
-        roughness: 0.28,
-        metalness: 0.02,
-      }),
+  swatches.forEach(({ x, color }) => {
+    addMesh(
+      group,
+      swatchGeometry,
+      color,
+      [x, -0.65, 0.15]
     )
-
-    paint.position.set(...position)
-    paint.scale.set(...paintSizes[index])
-    group.add(paint)
   })
 
-  group.rotation.set(0.08, -0.12, 0.18)
-  group.scale.setScalar(1.12)
+  group.rotation.set(-0.08, -0.16, -0.035)
+  group.scale.setScalar(1.03)
 
   return group
 }
-
 
 function createRedesign() {
   const group = new THREE.Group()
@@ -434,22 +536,24 @@ function animate() {
     const hovered = hoveredIndex === index
     const isBeingDragged = activeDrag === index
 
-    object.position.y = Math.sin(time * 0.42 + index * 2) * 0.17
+    const floatSpeed = 0.7
+    const floatHeight = selected ? 0.12 : 0.16
 
-    if (!isBeingDragged) {
-      object.rotation.y += delta * (0.07 + index * 0.018)
-      object.rotation.z = THREE.MathUtils.lerp(
-        object.rotation.z,
-        Math.sin(time * 0.3 + index) * 0.045,
-        1 - Math.exp(-delta * 1.8),
-      )
-    }
+    const targetY =
+      Math.sin(time * floatSpeed + index * 2) * floatHeight
+
+    object.position.y = THREE.MathUtils.lerp(
+      object.position.y,
+      targetY,
+      1 - Math.exp(-delta * 3)
+    )
+
 
     const scale = selected ? 1.1 : hovered ? 1.045 : 1
 
     object.scale.lerp(
       new THREE.Vector3(scale, scale, scale),
-      1 - Math.exp(-delta * 3),
+      1 - Math.exp(-delta * 3)
     )
   })
 
@@ -582,17 +686,22 @@ onBeforeUnmount(() => {
       aria-label="Três objetos 3D interativos representando serviços"
     ></div>
 
-    <Transition name="service-reveal" mode="out-in">
-      <article
-        v-if="selectedService !== null"
-        :key="selectedService"
-        class="service-description"
-      >
-        <h3>{{ services[selectedService].title }}</h3>
 
-        <p>{{ services[selectedService].description }}</p>
-      </article>
-    </Transition>
+  <Transition
+    name="service-reveal"
+    mode="out-in"
+    appear
+  >
+    <article
+      v-if="selectedService !== null"
+      :key="selectedService"
+      class="service-description"
+    >
+      <h3>{{ services[selectedService].title }}</h3>
+
+      <p>{{ services[selectedService].description }}</p>
+    </article>
+  </Transition>
   </section>
 </template>
 
@@ -627,7 +736,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0;
   width: 100%;
   min-width: 0;
@@ -640,6 +749,7 @@ onBeforeUnmount(() => {
 
 .services-scene {
   position: relative;
+  flex: 0 0 auto;
   width: min(1200px, 100%);
   height: clamp(300px, 38vw, 420px);
   min-width: 0;
@@ -656,12 +766,15 @@ onBeforeUnmount(() => {
 }
 
 .service-description {
-  position: relative;
+  position: absolute;
+  top: calc(16px + clamp(300px, 38vw, 420px) + 8px);
+  left: 50%;
   z-index: 1;
-  width: min(600px, 100%);
-  margin: 0 auto;
+  width: min(600px, calc(100% - 24px));
+  margin: 0;
   padding: 0 12px;
   text-align: center;
+  transform: translateX(-50%);
 }
 
 .service-description h3 {
@@ -683,18 +796,35 @@ onBeforeUnmount(() => {
 .service-reveal-enter-active,
 .service-reveal-leave-active {
   transition:
-    opacity 220ms ease,
-    transform 220ms ease;
+    opacity 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 380ms ease,
+    translate 480ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, translate, filter;
 }
 
 .service-reveal-enter-from {
   opacity: 0;
-  transform: translateY(9px);
+  translate: 0 22px;
+  filter: blur(8px);
+}
+
+.service-reveal-enter-to {
+  opacity: 1;
+  translate: 0 0;
+  filter: blur(0);
 }
 
 .service-reveal-leave-to {
   opacity: 0;
-  transform: translateY(-5px);
+  translate: 0 -10px;
+  filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-reveal-enter-active,
+  .service-reveal-leave-active {
+    transition: none;
+  }
 }
 
 @media (max-width: 760px) {
@@ -705,6 +835,10 @@ onBeforeUnmount(() => {
 
   .services-scene {
     height: clamp(280px, 55vw, 360px);
+  }
+
+  .service-description {
+  top: calc(12px + clamp(280px, 55vw, 360px) + 8px);
   }
 
   .service-description p {
@@ -722,7 +856,7 @@ onBeforeUnmount(() => {
   }
 
   .service-description {
-    padding: 0 4px;
+    top: calc(8px + clamp(270px, 78vw, 330px) + 8px);
   }
 
   .service-description h3 {
