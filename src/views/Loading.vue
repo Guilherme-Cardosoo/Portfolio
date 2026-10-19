@@ -12,7 +12,7 @@ onMounted(() => {
   setTimeout(() => {
     loadingText.value = 'Pronto!'
     isReady.value = true
-  }, 1000)
+  }, 3000)
 })
 
 const enter = () => {

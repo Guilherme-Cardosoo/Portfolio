@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
 import Loading from '../views/Loading.vue'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
@@ -27,10 +26,28 @@ const router = createRouter({
     }
   ],
 
-  scrollBehavior() {
-    return {
-      top: 0
+  scrollBehavior(to) {
+    if (to.hash) {
+      return new Promise((resolve) => {
+        const findSection = () => {
+          const element = document.querySelector(to.hash)
+
+          if (element) {
+            resolve({
+              el: element,
+              behavior: 'smooth',
+              top: 0
+            })
+          } else {
+            setTimeout(findSection, 50)
+          }
+        }
+
+        findSection()
+      })
     }
+
+    return { top: 0 }
   }
 })
 

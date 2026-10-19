@@ -246,14 +246,14 @@ const closeMenu = () => {
   flex-direction: column;
   align-items: stretch;
   gap: 0;
-  background: rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(15, 30, 65, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-bottom: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 15px;
   backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(22px);
   box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.15);
+    0 4px 20px rgba(0, 0, 0, 0.25);
     
   opacity: 0;
   visibility: hidden;

@@ -1,6 +1,8 @@
+```vue
 <script setup>
 import Navbar from '../components/Navbar.vue'
 import Hero from '../components/home/Hero.vue'
+import AboutSection from '../components/home/AboutSection.vue'
 import SkillsGlobe from '../components/home/SkillsGlobe.vue'
 import ProjectsSection from '../components/home/Projects.vue'
 import ServicesSection from '../components/home/Services.vue'
@@ -11,31 +13,12 @@ import FooterComponent from '../components/home/FooterComponent.vue'
 <template>
   <div class="home">
     <Navbar />
+
     <main>
       <Hero />
 
       <!-- SOBRE -->
-      <section id="sobre" class="about-preview">
-        <div class="about-content">
-          <p>
-            Me chamo <strong>Guilherme Cardoso</strong>, tenho
-            <strong>21 anos</strong> e atualmente curso
-            <strong>Sistemas de Informação</strong> no IFC.
-          </p>
-          <p>
-            Sou apaixonado por tecnologia, principalmente por
-            <strong>desenvolvimento web</strong>, focando em interfaces
-            responsivas e acessíveis.
-          </p>
-          <p>
-            Também tenho interesse em <strong>web design</strong>, onde busco
-            aprofundar meus conhecimentos sobre interfaces e tendências do mercado.
-          </p>
-          <RouterLink to="/sobre" class="about-button">
-            Ver mais
-          </RouterLink>
-        </div>
-      </section>
+      <AboutSection />
 
       <!-- HABILIDADES -->
       <section id="habilidades" class="skills-section">
@@ -47,14 +30,15 @@ import FooterComponent from '../components/home/FooterComponent.vue'
             </p>
           </div>
         </div>
+
         <SkillsGlobe />
       </section>
 
       <!-- PROJETOS -->
-       <section>
-          <ProjectsSection />
-       </section>
-      
+      <section>
+        <ProjectsSection />
+      </section>
+
       <!-- SERVIÇOS -->
       <section id="servicos" class="section">
         <ServicesSection />
@@ -78,82 +62,7 @@ main {
   width: 100%;
 }
 
-.about-preview {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 120px 30px 60px;
-  box-sizing: border-box;
-}
-
-.about-content {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-  min-height: 450px;
-  padding: 55px 60px 90px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-.about-content p {
-  margin: 0 0 22px;
-  max-width: 850px;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.about-content p:last-of-type {
-  margin-bottom: 0;
-}
-
-.about-content strong {
-  color: #fff;
-  font-weight: 600;
-}
-
-.about-button {
-  position: absolute;
-  bottom: 30px;
-  left: 35px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 25px;
-  color: #fff;
-  font-size: 17px;
-  font-weight: 500;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease,
-    border-color 0.3s ease;
-}
-
-.about-button:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.35);
-  transform: translateY(-2px);
-}
-
+/* HABILIDADES */
 .skills-section {
   min-height: 100vh;
   padding: 120px 30px 60px;
@@ -188,6 +97,7 @@ main {
   line-height: 1.6;
 }
 
+/* SECTIONS GERAIS */
 .section {
   min-height: 100vh;
   display: flex;
@@ -198,12 +108,7 @@ main {
   box-sizing: border-box;
 }
 
-.section h2 {
-  margin: 0;
-  color: #fff;
-  font-size: clamp(32px, 5vw, 64px);
-}
-
+/* CONTATO */
 section#contato.section {
   flex-direction: column;
   justify-content: center;
@@ -212,6 +117,7 @@ section#contato.section {
   gap: 12px;
 }
 
+/* RESPONSIVIDADE DAS HABILIDADES */
 @media (max-width: 1000px) {
   .skills-globe {
     height: 520px;
@@ -263,11 +169,8 @@ section#contato.section {
 
   .skill-panel {
     bottom: 5px;
-
     width: calc(100% - 30px);
-
     padding: 18px;
-
     border-radius: 15px;
   }
 
@@ -277,7 +180,6 @@ section#contato.section {
 
   .skill-panel h3 {
     margin-bottom: 8px;
-
     font-size: 22px;
   }
 
@@ -288,15 +190,12 @@ section#contato.section {
 
   .close-button {
     margin-top: 14px;
-
     padding: 7px 14px;
-
     font-size: 13px;
   }
 
   .globe-hint {
     bottom: 155px;
-
     font-size: 12px;
   }
 }
@@ -360,3 +259,4 @@ section#contato.section {
   }
 }
 </style>
+```

@@ -171,10 +171,18 @@ function setupScene() {
     100
   )
 
+  const width = globeContainer.value.clientWidth
+
+  const cameraDistance =
+    width < 380 ? 9.2 :
+    width < 600 ? 8.5 :
+    width < 900 ? 8 :
+    7.5
+
   camera.position.set(
     0,
     0,
-    7.5
+    cameraDistance
   )
 
   renderer = new THREE.WebGLRenderer({
@@ -776,25 +784,22 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="skills-globe">
-    <div
-      ref="globeContainer"
-      class="globe-container"
-    ></div>
-
-    <transition name="hover-skill">
+    <div class="globe-stage">
       <div
-        v-if="hoveredSkill && !selectedSkill"
-        class="hover-skill"
-      >
-        <span>
-          {{ hoveredSkill.name }}
-        </span>
+        ref="globeContainer"
+        class="globe-container"
+      ></div>
 
-        <small>
-          Clique para saber mais
-        </small>
-      </div>
-    </transition>
+      <transition name="hover-skill">
+        <div
+          v-if="hoveredSkill && !selectedSkill"
+          class="hover-skill"
+        >
+          <span>{{ hoveredSkill.name }}</span>
+          <small>Clique para saber mais</small>
+        </div>
+      </transition>
+    </div>
 
     <transition name="skill-panel">
       <div
@@ -805,13 +810,8 @@ onBeforeUnmount(() => {
           {{ selectedSkill.type }}
         </span>
 
-        <h3>
-          {{ selectedSkill.name }}
-        </h3>
-
-        <p>
-          {{ selectedSkill.description }}
-        </p>
+        <h3>{{ selectedSkill.name }}</h3>
+        <p>{{ selectedSkill.description }}</p>
 
         <button
           type="button"
@@ -836,16 +836,33 @@ onBeforeUnmount(() => {
 .skills-globe {
   position: relative;
   width: 100%;
-  height: 560px;
+  max-width: 100%;
+  min-width: 0;
+  height: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.globe-stage {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  height: 540px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .globe-container {
   width: 100%;
   height: 100%;
+  min-width: 0;
   cursor: grab;
+  touch-action: pan-y;
 }
 
 .globe-container:active {
@@ -871,13 +888,8 @@ onBeforeUnmount(() => {
   border-radius: 10px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow:
-    0 5px 25px rgba(0, 0, 0, 0.2);
-
-  transform:
-    translate(-50%, -50%)
-    translateY(-45px);
-
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -50%) translateY(-45px);
   pointer-events: none;
   z-index: 10;
 }
@@ -890,15 +902,16 @@ onBeforeUnmount(() => {
 
 .hover-skill small {
   margin-top: 3px;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.65);
   font-size: 11px;
 }
 
 .skill-panel {
   position: absolute;
-  right: 4%;
+  right: 3%;
   top: 50%;
   width: 280px;
+  max-width: calc(100% - 24px);
   padding: 25px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.055);
@@ -907,19 +920,15 @@ onBeforeUnmount(() => {
   border-radius: 18px;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  box-shadow:
-    0 4px 25px rgba(0, 0, 0, 0.18);
-
-  transform:
-    translateY(-50%);
-
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.18);
+  transform: translateY(-50%);
   z-index: 20;
 }
 
 .skill-type {
   display: block;
   margin-bottom: 8px;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.65);
   font-size: 13px;
   font-weight: 500;
   text-transform: uppercase;
@@ -931,6 +940,7 @@ onBeforeUnmount(() => {
   color: #fff;
   font-size: 28px;
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .skill-panel p {
@@ -949,9 +959,7 @@ onBeforeUnmount(() => {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
   cursor: pointer;
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .close-button:hover {
@@ -960,78 +968,80 @@ onBeforeUnmount(() => {
 }
 
 .globe-hint {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  color: rgba(255, 255, 255, 0.4);
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 13px;
   letter-spacing: 0.5px;
-  transform:
-    translateX(-50%);
-
+  text-align: center;
   pointer-events: none;
 }
 
 .skill-panel-enter-active,
 .skill-panel-leave-active {
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .skill-panel-enter-from,
 .skill-panel-leave-to {
   opacity: 0;
-  transform:
-    translate(20px, -50%);
+  transform: translate(20px, -50%);
 }
 
 .hover-skill-enter-active,
 .hover-skill-leave-active {
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .hover-skill-enter-from,
 .hover-skill-leave-to {
   opacity: 0;
-  transform:
-    translate(-50%, -50%)
-    translateY(-35px);
+  transform: translate(-50%, -50%) translateY(-35px);
 }
 
 @media (max-width: 900px) {
   .skills-globe {
-    height: 700px;
+    height: 660px;
+  }
+
+  .globe-stage {
+    width: min(100%, 520px);
+    height: 500px;
   }
 
   .skill-panel {
-    right: 50%;
     top: auto;
-    bottom: 15px;
-    width: min(90%, 400px);
-    transform:
-      translateX(50%);
+    right: auto;
+    bottom: 42px;
+    left: 50%;
+    width: min(400px, calc(100% - 24px));
+    transform: translateX(-50%);
   }
 
   .skill-panel-enter-from,
   .skill-panel-leave-to {
-    transform:
-      translate(50%, 20px);
-  }
-
-  .globe-hint {
-    bottom: 190px;
+    transform: translate(-50%, 20px);
   }
 }
 
 @media (max-width: 600px) {
   .skills-globe {
-    height: 620px;
+    height: 530px;
+  }
+
+  .globe-stage {
+    width: min(100%, 390px);
+    height: 390px;
+  }
+
+  .globe-hint {
+    margin-top: 4px;
+    font-size: 12px;
   }
 
   .skill-panel {
+    bottom: 32px;
     padding: 20px;
   }
 
@@ -1042,9 +1052,21 @@ onBeforeUnmount(() => {
   .skill-panel p {
     font-size: 14px;
   }
+}
 
-  .globe-hint {
-    bottom: 185px;
+@media (max-width: 380px) {
+  .skills-globe {
+    height: 490px;
+  }
+
+  .globe-stage {
+    width: 100%;
+    height: 350px;
+  }
+
+  .skill-panel {
+    bottom: 26px;
+    padding: 16px;
   }
 }
 </style>

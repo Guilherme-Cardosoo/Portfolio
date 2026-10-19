@@ -6,7 +6,7 @@
         <span class="logo">
           Guilherme Cardoso
         </span>
-        <RouterLink to="/home" class="back-button">
+        <RouterLink to="/home#sobre" class="back-button">
           Voltar
         </RouterLink>
       </div>

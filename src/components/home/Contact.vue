@@ -145,13 +145,20 @@ const contacts = [
   font-weight: 600;
   letter-spacing: -0.045em;
   text-align: center;
-}
+  background: linear-gradient(
+    110deg,
+     #8be5ff 0%,
+     #419bff 25%,
+     #d1f4ff 50%,
+     #419bff 75%,
+     #8be5ff 100%);
 
-.contact-title span {
-  background: linear-gradient(110deg, #8be5ff 10%, #419bff 90%);
+  background-size: 250% 100%;
+  background-position: 0% 50%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: textWave 4s ease-in-out infinite alternate;
 }
 
 .contact-subtitle {
@@ -368,6 +375,16 @@ const contacts = [
 
   .card-content {
     padding-top: 55px;
+  }
+}
+
+@keyframes textWave {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
   }
 }
 </style>

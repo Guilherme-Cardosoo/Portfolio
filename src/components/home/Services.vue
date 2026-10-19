@@ -497,19 +497,19 @@ function resize() {
   if (!width || !height) return
 
   const isMobile = width <= 480
-  const isTablet = width <= 760
+  const isTablet = width <= 820
 
   const spacing = isMobile
-    ? 2.4
+    ? 3.2
     : isTablet
-      ? 3.0
+      ? 3.8
       : BASE_SPACING
 
   camera.aspect = width / height
   camera.position.z = isMobile
-    ? 10.5
+    ? 11.5
     : isTablet
-      ? 9.4
+      ? 10
       : 8.5
 
   camera.updateProjectionMatrix()
@@ -679,7 +679,7 @@ onBeforeUnmount(() => {
 <template>
   <section id="servicos" class="services-section">
     <p class="services-label">SERVIÇOS E POSSIBILIDADES</p>
-    <p class="services-hint">Clique em um elemento para saber mais</p>
+    <p class="services-hint">Clique ou arraste um elemento para interagir</p>
     <div
       ref="container"
       class="services-scene"
