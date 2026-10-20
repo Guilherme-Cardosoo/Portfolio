@@ -1,8 +1,7 @@
-```vue
 <script setup>
 import { ref, computed } from 'vue'
+
 import projeto01 from '../../assets/Projetos/Snaply.png'
-import projeto02 from '../../assets/Projetos/Snaply.png'
 
 const projects = [
   {
@@ -14,16 +13,6 @@ const projects = [
     image: projeto01,
     projectUrl: 'https://snaply-wheat.vercel.app/',
     githubUrl: 'https://github.com/Guilherme-Cardosoo/Snaply'
-  },
-  {
-    number: '02',
-    name: 'WebManager',
-    description:
-      'WebManager é uma ferramenta desenvolvida para auxiliar no modo carreira treinador nos jogos da franquia EA FC/FIFA.',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
-    image: projeto02,
-    projectUrl: '#',
-    githubUrl: '#'
   }
 ]
 
@@ -568,32 +557,52 @@ a.project-button:hover::before {
 
   .project-content {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto auto;
     gap: clamp(22px, 4vw, 32px);
   }
 
   .project-info {
-    max-width: none;
+    display: contents;
   }
 
   .project-info h3 {
+    grid-column: 1;
+    grid-row: 1;
     font-size: clamp(30px, 5vw, 40px);
-    margin-bottom: 14px;
+    margin-bottom: -10px;
   }
 
   .project-description {
+    grid-column: 1;
+    grid-row: 2;
     max-width: 100%;
     font-size: clamp(12px, 1.8vw, 14px);
   }
 
   .project-technologies {
-    margin-top: 18px;
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: -10px;
+  }
+
+  .project-preview {
+    grid-column: 1;
+    grid-row: 4;
+    width: 100%;
+  }
+
+  .preview-frame {
+    width: 100%;
+    max-width: none;
   }
 
   .project-actions {
+    grid-column: 1;
+    grid-row: 5;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
-    margin-top: 22px;
+    margin-top: -10px;
   }
 
   .project-button {
@@ -603,32 +612,23 @@ a.project-button:hover::before {
     font-size: 11px;
   }
 
-  .project-preview {
-    width: 100%;
-  }
-
-  .preview-frame {
-    width: 100%;
-    max-width: none;
-  }
-
   .project-navigation {
-    top: 24px;
+    top: 50%;
     bottom: auto;
-    transform: none;
+    transform: translateY(-50%);
   }
 
   .project-navigation.previous {
-    left: 16px;
+    left: 12px;
   }
 
   .project-navigation.next {
-    right: 16px;
+    right: 12px;
   }
 
   .project-navigation.previous:hover,
   .project-navigation.next:hover {
-    transform: scale(1.15);
+    transform: translateY(-50%) scale(1.15);
   }
 
   .project-counter {
@@ -673,7 +673,7 @@ a.project-button:hover::before {
 
   .project-actions {
     gap: 8px;
-    margin-top: 20px;
+    margin-top: -10px;
   }
 
   .project-button {
@@ -685,7 +685,9 @@ a.project-button:hover::before {
   .project-navigation {
     width: 36px;
     height: 44px;
-    top: 20px;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
   }
 
   .project-navigation .chevron {
@@ -694,11 +696,11 @@ a.project-button:hover::before {
   }
 
   .project-navigation.previous {
-    left: 12px;
+    left: 4px;
   }
 
   .project-navigation.next {
-    right: 12px;
+    right: 4px;
   }
 
   .project-counter {
@@ -740,4 +742,3 @@ a.project-button:hover::before {
   }
 }
 </style>
-```

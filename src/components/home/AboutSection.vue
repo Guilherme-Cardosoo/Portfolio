@@ -28,7 +28,7 @@
       <div class="about-photo-wrapper">
         <div class="about-photo-frame">
           <img
-            src="/src/assets/img/teste.jpeg"
+            src="/src/assets/img/Profile.jpeg"
             alt="Foto de Guilherme Cardoso"
             class="about-photo"
           />

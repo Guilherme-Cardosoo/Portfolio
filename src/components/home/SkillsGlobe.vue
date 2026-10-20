@@ -12,7 +12,6 @@ let camera
 let renderer
 let controls
 let animationId
-
 let globeGroup
 
 let skillMeshes = []
@@ -28,98 +27,82 @@ const skills = [
   {
     name: 'HTML',
     type: 'Hard Skill',
-    description:
-      'Estruturação semântica e organização de páginas web.'
+    description: 'Estruturação semântica e organização de páginas web.'
   },
   {
     name: 'CSS',
     type: 'Hard Skill',
-    description:
-      'Criação de interfaces responsivas, organizadas e mordernas'
+    description: 'Criação de interfaces responsivas, organizadas e modernas.'
   },
   {
     name: 'JavaScript',
     type: 'Hard Skill',
-    description:
-      'Desenvolvimento de interações e funcionalidades para aplicações web.'
+    description: 'Desenvolvimento de interações e funcionalidades para aplicações web.'
   },
   {
     name: 'Vue.js',
     type: 'Hard Skill',
-    description:
-      'Desenvolvimento de interfaces utilizando componentes e aplicações reativas.'
+    description: 'Desenvolvimento de interfaces utilizando componentes e aplicações reativas.'
   },
   {
     name: 'Python',
     type: 'Hard Skill',
-    description:
-      'Programação, automação e desenvolvimento de soluções.'
+    description: 'Programação, automação e desenvolvimento de soluções.'
   },
   {
     name: 'Git',
     type: 'Hard Skill',
-    description:
-      'Controle de versão e gerenciamento do histórico dos projetos.'
+    description: 'Controle de versão e gerenciamento do histórico dos projetos.'
   },
   {
     name: 'GitHub',
     type: 'Hard Skill',
-    description:
-      'Hospedagem, colaboração e organização de projetos.'
+    description: 'Hospedagem, colaboração e organização de projetos.'
   },
   {
     name: 'Web Design',
     type: 'Hard Skill',
-    description:
-      'Criação e planejamento de interfaces limpas, modernas e funcionais.'
+    description: 'Criação e planejamento de interfaces limpas, modernas e funcionais.'
   },
   {
     name: 'Three.js',
     type: 'Hard Skill',
-    description:
-      'Criação de experiências 3D interativas para aplicações web.'
+    description: 'Criação de experiências 3D interativas para aplicações web.'
   },
   {
     name: 'Comunicação',
     type: 'Soft Skill',
-    description:
-      'Capacidade de transmitir ideias de forma clara e objetiva.'
+    description: 'Capacidade de transmitir ideias de forma clara e objetiva.'
   },
   {
     name: 'Organização',
     type: 'Soft Skill',
-    description:
-      'Planejamento e organização de tarefas e projetos.'
+    description: 'Planejamento e organização de tarefas e projetos.'
   },
   {
     name: 'Paciência',
     type: 'Soft Skill',
-    description:
-      'Manter a calma e persistir na resolução de problemas.'
+    description: 'Manter a calma e persistir na resolução de problemas.'
   },
   {
     name: 'Curiosidade',
     type: 'Soft Skill',
-    description:
-      'Interesse constante em entender como as coisas funcionam.'
+    description: 'Interesse constante em entender como as coisas funcionam.'
   },
   {
     name: 'Resolução de problemas',
     type: 'Soft Skill',
-    description:
-      'Análise de problemas e busca por soluções eficientes.'
+    description: 'Análise de problemas e busca por soluções eficientes.'
   },
   {
     name: 'Atenção aos detalhes',
     type: 'Soft Skill',
-    description:
-      'Cuidado com pequenos detalhes que influenciam o resultado final.'
+    description: 'Cuidado com pequenos detalhes que influenciam o resultado final.'
   },
   {
     name: 'Adaptabilidade',
     type: 'Soft Skill',
-    description:
-      'Facilidade para aprender e se adaptar a novas situações.'
+    description: 'Facilidade para aprender e se adaptar a novas situações.'
   }
 ]
 
@@ -128,25 +111,14 @@ const structuralPointCount = 75
 
 function createFibonacciPoints(count, radius) {
   const points = []
-
-  const goldenAngle =
-    Math.PI * (3 - Math.sqrt(5))
+  const goldenAngle = Math.PI * (3 - Math.sqrt(5))
 
   for (let i = 0; i < count; i++) {
-    const y =
-      1 - (i / (count - 1)) * 2
-
-    const radiusAtY =
-      Math.sqrt(1 - y * y)
-
-    const theta =
-      goldenAngle * i
-
-    const x =
-      Math.cos(theta) * radiusAtY
-
-    const z =
-      Math.sin(theta) * radiusAtY
+    const y = 1 - (i / (count - 1)) * 2
+    const radiusAtY = Math.sqrt(1 - y * y)
+    const theta = goldenAngle * i
+    const x = Math.cos(theta) * radiusAtY
+    const z = Math.sin(theta) * radiusAtY
 
     points.push(
       new THREE.Vector3(
@@ -179,11 +151,7 @@ function setupScene() {
     width < 900 ? 8 :
     7.5
 
-  camera.position.set(
-    0,
-    0,
-    cameraDistance
-  )
+  camera.position.set(0, 0, cameraDistance)
 
   renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -199,12 +167,9 @@ function setupScene() {
     globeContainer.value.clientHeight
   )
 
-  renderer.outputColorSpace =
-    THREE.SRGBColorSpace
+  renderer.outputColorSpace = THREE.SRGBColorSpace
 
-  globeContainer.value.appendChild(
-    renderer.domElement
-  )
+  globeContainer.value.appendChild(renderer.domElement)
 
   controls = new OrbitControls(
     camera,
@@ -213,21 +178,15 @@ function setupScene() {
 
   controls.enableDamping = true
   controls.dampingFactor = 0.045
-
   controls.enablePan = false
   controls.enableZoom = false
-
   controls.rotateSpeed = 0.45
-
   controls.autoRotate = true
   controls.autoRotateSpeed = 0.28
-
   controls.minPolarAngle = 0.35
-  controls.maxPolarAngle =
-    Math.PI - 0.35
+  controls.maxPolarAngle = Math.PI - 0.35
 
   raycaster = new THREE.Raycaster()
-
   raycaster.params.Mesh.threshold = 0.15
 
   mouse = new THREE.Vector2()
@@ -235,170 +194,109 @@ function setupScene() {
 
 function createGlobe() {
   globeGroup = new THREE.Group()
-
   scene.add(globeGroup)
 
-  const totalPoints =
-    structuralPointCount +
-    skills.length
+  const totalPoints = structuralPointCount + skills.length
 
-  const allPoints =
-    createFibonacciPoints(
-      totalPoints,
-      sphereRadius
-    )
-
-  createStructuralPoints(
-    allPoints
+  const allPoints = createFibonacciPoints(
+    totalPoints,
+    sphereRadius
   )
 
-  createSkillPoints(
-    allPoints
-  )
-
-  createConnections(
-    allPoints
-  )
+  createStructuralPoints(allPoints)
+  createSkillPoints(allPoints)
+  createConnections(allPoints)
 }
 
 function createStructuralPoints(points) {
   const positions = []
 
   points.forEach((point) => {
-    positions.push(
-      point.x,
-      point.y,
-      point.z
-    )
+    positions.push(point.x, point.y, point.z)
   })
 
-  const geometry =
-    new THREE.BufferGeometry()
+  const geometry = new THREE.BufferGeometry()
 
   geometry.setAttribute(
     'position',
-    new THREE.Float32BufferAttribute(
-      positions,
-      3
-    )
+    new THREE.Float32BufferAttribute(positions, 3)
   )
 
-  const material =
-    new THREE.PointsMaterial({
+  const material = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: 0.035,
+    transparent: true,
+    opacity: 0.38,
+    sizeAttenuation: true
+  })
+
+  const structuralPoints = new THREE.Points(
+    geometry,
+    material
+  )
+
+  globeGroup.add(structuralPoints)
+}
+
+function createSkillPoints(points) {
+  const skillPositions = []
+  const total = points.length
+  const step = Math.floor(total / skills.length)
+
+  for (let i = 0; i < skills.length; i++) {
+    let index = i * step
+
+    index = Math.min(
+      index + (i % 3),
+      points.length - 1
+    )
+
+    skillPositions.push(points[index])
+  }
+
+  skillPositions.forEach((position, index) => {
+    const geometry = new THREE.SphereGeometry(
+      0.085,
+      20,
+      20
+    )
+
+    const material = new THREE.MeshBasicMaterial({
       color: 0xffffff,
-      size: 0.035,
       transparent: true,
-      opacity: 0.38,
-      sizeAttenuation: true
+      opacity: 1
     })
 
-  const structuralPoints =
-    new THREE.Points(
+    const mesh = new THREE.Mesh(
       geometry,
       material
     )
 
-  globeGroup.add(
-    structuralPoints
-  )
-}
+    mesh.position.copy(position)
 
-function createSkillPoints(points) {
-
-  const skillPositions = []
-
-  const total =
-    points.length
-
-  const step =
-    Math.floor(
-      total / skills.length
-    )
-
-  for (
-    let i = 0;
-    i < skills.length;
-    i++
-  ) {
-    let index =
-      i * step
-
-    index =
-      Math.min(
-        index + (i % 3),
-        points.length - 1
-      )
-
-    skillPositions.push(
-      points[index]
-    )
-  }
-
-  skillPositions.forEach(
-    (position, index) => {
-      const geometry =
-        new THREE.SphereGeometry(
-          0.085,
-          20,
-          20
-        )
-
-      const material =
-        new THREE.MeshBasicMaterial({
-          color: 0xffffff,
-          transparent: true,
-          opacity: 1
-        })
-
-      const mesh =
-        new THREE.Mesh(
-          geometry,
-          material
-        )
-
-      mesh.position.copy(
-        position
-      )
-
-      mesh.userData = {
-        skill: skills[index],
-        index
-      }
-
-      globeGroup.add(mesh)
-
-      skillMeshes.push(mesh)
+    mesh.userData = {
+      skill: skills[index],
+      index
     }
-  )
+
+    globeGroup.add(mesh)
+    skillMeshes.push(mesh)
+  })
 }
 
 function createConnections(points) {
   const edges = []
-
   const maxDistance = 1.8
 
-  for (
-    let i = 0;
-    i < points.length;
-    i++
-  ) {
+  for (let i = 0; i < points.length; i++) {
     const nearby = []
 
-    for (
-      let j = 0;
-      j < points.length;
-      j++
-    ) {
+    for (let j = 0; j < points.length; j++) {
       if (i === j) continue
 
-      const distance =
-        points[i].distanceTo(
-          points[j]
-        )
+      const distance = points[i].distanceTo(points[j])
 
-      if (
-        distance <= maxDistance
-      ) {
+      if (distance <= maxDistance) {
         nearby.push({
           index: j,
           distance
@@ -406,255 +304,149 @@ function createConnections(points) {
       }
     }
 
-    nearby.sort(
-      (a, b) =>
-        a.distance - b.distance
-    )
+    nearby.sort((a, b) => a.distance - b.distance)
 
-    const connectionCount =
-      Math.min(
-        3,
-        nearby.length
-      )
+    const connectionCount = Math.min(3, nearby.length)
 
-    for (
-      let k = 0;
-      k < connectionCount;
-      k++
-    ) {
-      const target =
-        nearby[k].index
+    for (let k = 0; k < connectionCount; k++) {
+      const target = nearby[k].index
 
       if (i < target) {
-        edges.push([
-          i,
-          target
-        ])
+        edges.push([i, target])
       }
     }
   }
 
-  edges.forEach(
-    ([startIndex, endIndex]) => {
-      const start =
-        points[startIndex]
+  edges.forEach(([startIndex, endIndex]) => {
+    const start = points[startIndex]
+    const end = points[endIndex]
 
-      const end =
-        points[endIndex]
+    const geometry = new THREE.BufferGeometry()
+      .setFromPoints([start, end])
 
-      const geometry =
-        new THREE.BufferGeometry()
-          .setFromPoints([
-            start,
-            end
-          ])
+    const material = new THREE.LineBasicMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.12
+    })
 
-      const material =
-        new THREE.LineBasicMaterial({
-          color: 0xffffff,
-          transparent: true,
-          opacity: 0.12
-        })
+    const line = new THREE.Line(
+      geometry,
+      material
+    )
 
-      const line =
-        new THREE.Line(
-          geometry,
-          material
-        )
-
-      line.userData = {
-        startIndex,
-        endIndex
-      }
-
-      globeGroup.add(line)
-
-      connectionLines.push(line)
+    line.userData = {
+      startIndex,
+      endIndex
     }
-  )
+
+    globeGroup.add(line)
+    connectionLines.push(line)
+  })
 }
 
 function updateMousePosition(event) {
-  const rect =
-    renderer.domElement
-      .getBoundingClientRect()
+  const rect = renderer.domElement.getBoundingClientRect()
 
   mouse.x =
-    ((event.clientX - rect.left) /
-      rect.width) *
-      2 -
-    1
+    ((event.clientX - rect.left) / rect.width) * 2 - 1
 
   mouse.y =
-    -(
-      (event.clientY - rect.top) /
-      rect.height
-    ) *
-      2 +
-    1
+    -((event.clientY - rect.top) / rect.height) * 2 + 1
 }
 
 function handlePointerDown(event) {
-  pointerDown.set(
-    event.clientX,
-    event.clientY
-  )
+  pointerDown.set(event.clientX, event.clientY)
 }
 
 function handlePointerMove(event) {
   updateMousePosition(event)
 
-  raycaster.setFromCamera(
-    mouse,
-    camera
+  raycaster.setFromCamera(mouse, camera)
+
+  const intersections = raycaster.intersectObjects(
+    skillMeshes,
+    false
   )
 
-  const intersections =
-    raycaster.intersectObjects(
-      skillMeshes,
-      false
-    )
-
-  if (
-    intersections.length === 0
-  ) {
+  if (intersections.length === 0) {
     hoveredSkill.value = null
 
     if (!selectedSkill.value) {
       resetSkillPoints()
     }
 
-    renderer.domElement.style.cursor =
-      'grab'
-
+    renderer.domElement.style.cursor = 'grab'
     return
   }
 
-  const object =
-    intersections[0].object
+  const object = intersections[0].object
 
-  hoveredSkill.value =
-    object.userData.skill
-
-  renderer.domElement.style.cursor =
-    'pointer'
+  hoveredSkill.value = object.userData.skill
+  renderer.domElement.style.cursor = 'pointer'
 
   if (!selectedSkill.value) {
-    highlightHover(
-      object
-    )
+    highlightHover(object)
   }
 }
 
 function handlePointerUp(event) {
-  pointerUp.set(
-    event.clientX,
-    event.clientY
-  )
+  pointerUp.set(event.clientX, event.clientY)
 
-  const distance =
-    pointerDown.distanceTo(
-      pointerUp
-    )
+  const distance = pointerDown.distanceTo(pointerUp)
 
   if (distance > 5) {
     return
   }
 
   updateMousePosition(event)
+  raycaster.setFromCamera(mouse, camera)
 
-  raycaster.setFromCamera(
-    mouse,
-    camera
+  const intersections = raycaster.intersectObjects(
+    skillMeshes,
+    false
   )
 
-  const intersections =
-    raycaster.intersectObjects(
-      skillMeshes,
-      false
-    )
-
-  if (
-    intersections.length === 0
-  ) {
+  if (intersections.length === 0) {
     selectedSkill.value = null
-
     resetSkillPoints()
-
     return
   }
 
-  const object =
-    intersections[0].object
+  const object = intersections[0].object
 
-  selectedSkill.value =
-    object.userData.skill
-
-  highlightSelected(
-    object
-  )
+  selectedSkill.value = object.userData.skill
+  highlightSelected(object)
 }
 
-function highlightHover(
-  selectedObject
-) {
-  skillMeshes.forEach(
-    (mesh) => {
-      const isHovered =
-        mesh === selectedObject
+function highlightHover(selectedObject) {
+  skillMeshes.forEach((mesh) => {
+    const isHovered = mesh === selectedObject
 
-      mesh.scale.setScalar(
-        isHovered
-          ? 1.7
-          : 1
-      )
-
-      mesh.material.opacity =
-        isHovered
-          ? 1
-          : 0.55
-    }
-  )
+    mesh.scale.setScalar(isHovered ? 1.7 : 1)
+    mesh.material.opacity = isHovered ? 1 : 0.55
+  })
 }
 
-function highlightSelected(
-  selectedObject
-) {
-  skillMeshes.forEach(
-    (mesh) => {
-      const isSelected =
-        mesh === selectedObject
+function highlightSelected(selectedObject) {
+  skillMeshes.forEach((mesh) => {
+    const isSelected = mesh === selectedObject
 
-      mesh.scale.setScalar(
-        isSelected
-          ? 2
-          : 0.65
-      )
-
-      mesh.material.opacity =
-        isSelected
-          ? 1
-          : 0.25
-    }
-  )
+    mesh.scale.setScalar(isSelected ? 2 : 0.65)
+    mesh.material.opacity = isSelected ? 1 : 0.25
+  })
 }
 
 function resetSkillPoints() {
-  skillMeshes.forEach(
-    (mesh) => {
-      mesh.scale.setScalar(1)
-
-      mesh.material.opacity =
-        1
-    }
-  )
+  skillMeshes.forEach((mesh) => {
+    mesh.scale.setScalar(1)
+    mesh.material.opacity = 1
+  })
 }
 
 function closeSkill() {
   selectedSkill.value = null
-
   hoveredSkill.value = null
-
   resetSkillPoints()
 }
 
@@ -663,55 +455,30 @@ function handleResize() {
     return
   }
 
-  const width =
-    globeContainer.value
-      .clientWidth
+  const width = globeContainer.value.clientWidth
+  const height = globeContainer.value.clientHeight
 
-  const height =
-    globeContainer.value
-      .clientHeight
-
-  camera.aspect =
-    width / height
-
+  camera.aspect = width / height
   camera.updateProjectionMatrix()
 
-  renderer.setSize(
-    width,
-    height
-  )
+  renderer.setSize(width, height)
 
   renderer.setPixelRatio(
-    Math.min(
-      window.devicePixelRatio,
-      2
-    )
+    Math.min(window.devicePixelRatio, 2)
   )
 }
 
 function animate() {
-  animationId =
-    requestAnimationFrame(
-      animate
-    )
+  animationId = requestAnimationFrame(animate)
 
   controls.update()
-
-  renderer.render(
-    scene,
-    camera
-  )
+  renderer.render(scene, camera)
 }
 
 function cleanup() {
-  cancelAnimationFrame(
-    animationId
-  )
+  cancelAnimationFrame(animationId)
 
-  window.removeEventListener(
-    'resize',
-    handleResize
-  )
+  window.removeEventListener('resize', handleResize)
 
   renderer.domElement.removeEventListener(
     'pointerdown',
@@ -730,28 +497,22 @@ function cleanup() {
 
   controls.dispose()
 
-  skillMeshes.forEach(
-    (mesh) => {
-      mesh.geometry.dispose()
-      mesh.material.dispose()
-    }
-  )
+  skillMeshes.forEach((mesh) => {
+    mesh.geometry.dispose()
+    mesh.material.dispose()
+  })
 
-  connectionLines.forEach(
-    (line) => {
-      line.geometry.dispose()
-      line.material.dispose()
-    }
-  )
+  connectionLines.forEach((line) => {
+    line.geometry.dispose()
+    line.material.dispose()
+  })
 
   renderer.dispose()
-
   renderer.domElement.remove()
 }
 
 onMounted(() => {
   setupScene()
-
   createGlobe()
 
   renderer.domElement.addEventListener(
@@ -769,10 +530,7 @@ onMounted(() => {
     handlePointerUp
   )
 
-  window.addEventListener(
-    'resize',
-    handleResize
-  )
+  window.addEventListener('resize', handleResize)
 
   animate()
 })
@@ -906,6 +664,7 @@ onBeforeUnmount(() => {
   font-size: 11px;
 }
 
+/* Card padrão para telas maiores */
 .skill-panel {
   position: absolute;
   right: 3%;
@@ -978,9 +737,12 @@ onBeforeUnmount(() => {
   pointer-events: none;
 }
 
+/* Animações do card */
 .skill-panel-enter-active,
 .skill-panel-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .skill-panel-enter-from,
@@ -991,7 +753,9 @@ onBeforeUnmount(() => {
 
 .hover-skill-enter-active,
 .hover-skill-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .hover-skill-enter-from,
@@ -1000,6 +764,7 @@ onBeforeUnmount(() => {
   transform: translate(-50%, -50%) translateY(-35px);
 }
 
+/* Tablets e telas menores */
 @media (max-width: 900px) {
   .skills-globe {
     height: 660px;
@@ -1016,6 +781,21 @@ onBeforeUnmount(() => {
     bottom: 42px;
     left: 50%;
     width: min(400px, calc(100% - 24px));
+
+    /* Vidro mais opaco, seguindo o menu mobile */
+    background: rgba(8, 13, 48, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 18px;
+
+    /* Reduz a interferência visual do globo */
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+      0 12px 35px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(0, 0, 0, 0.08);
+
     transform: translateX(-50%);
   }
 
@@ -1023,8 +803,27 @@ onBeforeUnmount(() => {
   .skill-panel-leave-to {
     transform: translate(-50%, 20px);
   }
+
+  .skill-type {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .skill-panel p {
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .close-button {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .close-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.32);
+  }
 }
 
+/* Celulares */
 @media (max-width: 600px) {
   .skills-globe {
     height: 530px;
@@ -1043,6 +842,8 @@ onBeforeUnmount(() => {
   .skill-panel {
     bottom: 32px;
     padding: 20px;
+    width: min(400px, calc(100% - 24px));
+    border-radius: 16px;
   }
 
   .skill-panel h3 {
@@ -1051,9 +852,20 @@ onBeforeUnmount(() => {
 
   .skill-panel p {
     font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .skill-type {
+    font-size: 12px;
+    letter-spacing: 1.3px;
+  }
+
+  .close-button {
+    margin-top: 16px;
   }
 }
 
+/* Celulares estreitos */
 @media (max-width: 380px) {
   .skills-globe {
     height: 490px;
@@ -1067,6 +879,16 @@ onBeforeUnmount(() => {
   .skill-panel {
     bottom: 26px;
     padding: 16px;
+    width: calc(100% - 20px);
+    border-radius: 14px;
+  }
+
+  .skill-panel h3 {
+    font-size: 22px;
+  }
+
+  .skill-panel p {
+    font-size: 13px;
   }
 }
 </style>
